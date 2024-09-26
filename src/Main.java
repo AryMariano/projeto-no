@@ -22,6 +22,23 @@ public class Main {
 
         System.out.println(pilha1);
 
+        Fila fila1 = new Fila();
+
+        fila1.enqueue(no1);
+        fila1.enqueue(no2);
+        fila1.enqueue(no3);
+        fila1.enqueue(no4);
+        fila1.enqueue(no5);
+
+        fila1.dequeue();
+        fila1.enqueue(no1);
+        fila1.dequeue();
+        fila1.enqueue(no2);
+        fila1.dequeue();
+        fila1.enqueue(no3);
+
+        System.out.println(fila1);
+
 
 
     }
