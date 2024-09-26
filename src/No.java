@@ -1,26 +1,26 @@
-public class No {
+public class No<T> {
 
-    private int dado;
+    private T dado;
 
-    private No refNo;
+    private No<T> refNo;
 
-    public No(int dado) {
+    public No(T dado) {
         this.dado = dado;
     }
 
-    public int getDado() {
+    public Object getDado() {
         return dado;
     }
 
-    public void setDado(int dado) {
+    public void setDado(T dado) {
         this.dado = dado;
     }
 
-    public No getRefNo() {
+    public No<T> getRefNo() {
         return refNo;
     }
 
-    public void setRefNo(No refNo) {
+    public void setRefNo(No<T> refNo) {
         this.refNo = refNo;
     }
 

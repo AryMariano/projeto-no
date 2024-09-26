@@ -1,31 +1,34 @@
-public class Pilha {
+public class Pilha<T> {
 
-    private No noEntradaPilha;
+    private No<T> noEntradaPilha;
     
 
     public Pilha() {
         this.noEntradaPilha = null;
     }
 
-    public No pop(){
+    @SuppressWarnings("unchecked")
+    public T pop(){
         if(!isEmpty()){
-            No noPoped = noEntradaPilha;
+            No<T> noPoped = noEntradaPilha;
             noEntradaPilha = noEntradaPilha.getRefNo();
-            return noPoped;
+            return (T) noPoped.getDado();
         } else{
             return null;
         }
     }
 
-    public void push(No novoNo){
-        No auxiliarNo = noEntradaPilha;
+    public void push(T dado){ // a criacao do no esta embutido
+        No<T> novoNo = new No<T>(dado);
+        No<T> auxiliarNo = noEntradaPilha;
         noEntradaPilha = novoNo;
         novoNo.setRefNo(auxiliarNo);
 
     }
 
-    public No top(){
-        return noEntradaPilha;
+    @SuppressWarnings("unchecked")
+    public T top(){
+        return (T) noEntradaPilha;
     }
 
     public boolean isEmpty(){
@@ -39,7 +42,7 @@ public class Pilha {
 
         String stringRetorno = "";
 
-        No noAuxiliar = noEntradaPilha;
+        No<T> noAuxiliar = noEntradaPilha;
 
         while(true){
             if(noAuxiliar != null){

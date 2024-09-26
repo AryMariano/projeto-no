@@ -1,6 +1,6 @@
-public class Fila {
+public class Fila<T> {
 
-    private No noEntradaFila;
+    private No<T> noEntradaFila;
 
     public Fila() {
         this.noEntradaFila = null;
@@ -10,34 +10,37 @@ public class Fila {
         return noEntradaFila == null ? true : false;
     }
 
-    public void enqueue(No novoNo){
-    novoNo.setRefNo(noEntradaFila);
-    noEntradaFila = novoNo;
+    public void enqueue(T dado){
+        No<T> novoNo = new No<T>(dado);
+        novoNo.setRefNo(noEntradaFila);
+        noEntradaFila = novoNo;
     }
 
-    public No fist(){
+    @SuppressWarnings("unchecked")
+    public T first(){
         if(!filaIsEmpty()){
-            No primeiroNo = noEntradaFila;
+            No<T> primeiroNo = noEntradaFila;
             while(primeiroNo.getRefNo() != null){
                 primeiroNo = primeiroNo.getRefNo();
             }
-            return primeiroNo;
+            return (T) primeiroNo.getDado();
 
         }else{
             return null;
         }
     }
 
-    public No dequeue(){
+    @SuppressWarnings("unchecked")
+    public T dequeue(){
         if(!filaIsEmpty()){
-            No primeiroNo = noEntradaFila;
-            No auxiliarNo = noEntradaFila;
+            No<T> primeiroNo = noEntradaFila;
+            No<T> auxiliarNo = noEntradaFila;
             while(primeiroNo.getRefNo() != null){
                 auxiliarNo = primeiroNo;
                 primeiroNo = primeiroNo.getRefNo();
             }
             auxiliarNo.setRefNo(null);
-            return primeiroNo;
+            return (T) primeiroNo.getDado();
 
         }else{
             return null;
@@ -49,7 +52,7 @@ public class Fila {
     public String toString() {
 
         String stringRetorno = "";
-        No noAuxiliar = noEntradaFila;
+        No<T> noAuxiliar = noEntradaFila;
 
         if(noAuxiliar != null){
             while(true){
